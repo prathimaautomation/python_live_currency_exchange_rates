@@ -1,11 +1,14 @@
 import json
 import requests
 
+
 class Live_Currency_EX:
 
     def read_live_rate_from_api(currency_code):
         #using the currency exchange api along with apikey to get response
-        url = f"https://free.currconv.com/api/v7/convert?q={currency_code}_PHP&compact=ultra&apiKey=393449d779be4f68212b"
+        with open('secret.txt') as f:
+            key = f.readline()
+        url = f"https://free.currconv.com/api/v7/convert?q={currency_code}_PHP&compact=ultra&apiKey={key}"
         #get the response from the api
         check_response = requests.get(url)
         #check if the response is successful
